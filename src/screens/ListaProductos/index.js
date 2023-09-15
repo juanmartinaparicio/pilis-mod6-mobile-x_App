@@ -1,65 +1,10 @@
 import React from 'react';
 import {StyleSheet,  SafeAreaView,  ScrollView,  Text,  TouchableOpacity,  View,  Image,} from 'react-native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
+import {items} from './products'
 
-const items = [
-  {
-    img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1899&q=80',
-    label: 'The Burger Arena',
-    ordered: 232,
-    likes: 87,
-    price: 12.95,
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-    label: 'Pepperoni Pizza',
-    ordered: 76,
-    likes: 23,
-    price: 15.95,
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80',
-    label: 'Make Your Own Salad',
-    ordered: 283,
-    likes: 85,
-    price: 11.95,
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1049&q=80',
-    label: 'French Toasts',
-    ordered: 82,
-    likes: 73,
-    price: 9.95,
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1899&q=80',
-    label: 'The Burger Arena',
-    ordered: 232,
-    likes: 87,
-    price: 12.95,
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-    label: 'Pepperoni Pizza',
-    ordered: 76,
-    likes: 23,
-    price: 15.95,
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80',
-    label: 'Make Your Own Salad',
-    ordered: 283,
-    likes: 85,
-    price: 11.95,
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1049&q=80',
-    label: 'French Toasts',
-    ordered: 82,
-    likes: 73,
-    price: 9.95,
-  },
-];
+
+
 
 export default function ListaProductos() {
   return (
@@ -111,7 +56,7 @@ export default function ListaProductos() {
                     ${price.toLocaleString('en-US')}
                   </Text>
                 </View>
-
+              <View>
                 <TouchableOpacity
                   onPress={() => {
                     // handle onPress
@@ -119,6 +64,15 @@ export default function ListaProductos() {
                   style={styles.cardAction}>
                   <FeatherIcon color="#fff" name="plus" size={24} />
                 </TouchableOpacity>
+
+                {/* <TouchableOpacity
+                  onPress={() => {
+                    // handle onPress
+                  }}
+                  style={styles.cardAction}>
+                  <FeatherIcon color="#fff" name="minus" size={24} />
+                </TouchableOpacity> */}
+                </View>
               </View>
             </TouchableOpacity>
           );
@@ -195,8 +149,8 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   cardAction: {
-    width: 48,
-    height: 48,
+    width: 24,
+    height: 24,
     borderRadius: 9999,
     backgroundColor: '#ff9801',
     alignItems: 'center',

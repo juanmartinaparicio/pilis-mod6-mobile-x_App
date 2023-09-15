@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 // Logo....
 import Logo from '../../assets/logox.png';
-import Home from '../HomeScreen';
+import Home from '../ListaProductos';
 
 const BGColor = "#FF9804"
 

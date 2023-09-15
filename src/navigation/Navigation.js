@@ -2,6 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import SplashScreen from "../screens/SplashScreen";
 import ListaProductos from "../screens/ListaProductos";
+import CarritoScreen from "../screens/CarritoScreen";
 import Settings from "../screens/Settings";
 import { Ionicons } from '@expo/vector-icons';
 
@@ -18,8 +19,8 @@ function TabGroup() {
                         iconName = focused ? "home" : "home-outline";
                     } else if (route.name === "settings") {
                         iconName = focused ? "settings" : "settings-outline";
-                    } else if (route.name === "Lista") {
-                        iconName = focused ? "notifications" : "notifications-outline";
+                    } else if (route.name === "Carrito") {
+                        iconName = focused ? "cart" : "cart-outline";
                     }
                     return <Ionicons name={iconName} color={color} size={size}
                     />
@@ -27,8 +28,14 @@ function TabGroup() {
 
             })}
         >
-            <Tab.Screen name="SplashScreen" component={SplashScreen} />
-            <Tab.Screen name="Lista" component={ListaProductos} />
+            <Tab.Screen 
+                name="SplashScreen" 
+                component={SplashScreen}
+            />
+            <Tab.Screen 
+                name="Carrito" 
+                component={CarritoScreen}
+            />
             <Tab.Screen name="settings" component={Settings} />
         </Tab.Navigator>
     )
