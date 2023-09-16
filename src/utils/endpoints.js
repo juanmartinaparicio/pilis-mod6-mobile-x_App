@@ -12,6 +12,8 @@ const ENDPOINTS = {
 
   TICKETS: `${API}/tickets`,
   CODE_TICKET: `${API}/tickets/code`,
+  REFRESH_TICKET: `${API}/tickets/refresh`,
+
 
   DELIVER: `${API}/tickets/deliver`,
 };
