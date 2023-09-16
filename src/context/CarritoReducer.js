@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 export const carritoSlice = createSlice({
     name:'carrito',
     initialState:{
-        carrito:[],
+        cart:[],
     },
     reducers:{
         addToCart : (state,action) => {
-            const itemPresent = state.cart.find((item) => item.id === action.payload.id);
+            const itemPresent = state.cart.find((item) => item.productId === action.payload.productId);
             if(itemPresent){
                 itemPresent.quantity++;
             }else{
@@ -15,22 +15,23 @@ export const carritoSlice = createSlice({
             }
         },
         removeFromCart :(state,action) => {
-            const removeFromCart = state.cart.filter((item) => item.id !== action.payload.id);
+            const removeFromCart = state.cart.filter((item) => item.productId !== action.payload.productId);
             state.cart = removeFromCart;
         },
         incrementQty: (state,action) => {
-            const itemPresent = state.cart.find((item) => item.id === action.payload.id);
+            const itemPresent = state.cart.find((item) => item.productId === action.payload.productId);
             itemPresent.quantity++;
         },
         decrementQty : (state,action) => {
-            const itemPresent = state.cart.find((item) => item.id === action.payload.id);
+            const itemPresent = state.cart.find((item) => item.productId === action.payload.productId);
             if(itemPresent.quantity == 1){
-                const removeFromCart = state.cart.filter((item) => item.id !== action.payload.id);
+                const removeFromCart = state.cart.filter((item) => item.productId !== action.payload.productId);
                 state.cart = removeFromCart;
             }else{
                 itemPresent.quantity--;
             }
-        }
+            }
+        
     }
 })
 

@@ -15,7 +15,6 @@ export const CardProduct = ({ item }) => {
   };
   const cart = useSelector((state) => state.cart.cart);
 
-  
 
   return (
     <TouchableOpacity
@@ -72,8 +71,8 @@ export const CardProduct = ({ item }) => {
                 <FeatherIcon color="#fff" name="plus" size={24} />
               </TouchableOpacity>
 
+              <Text>{item.quantity}</Text>
               
-
               <TouchableOpacity
                 onPress={() => {
                   dispatch(decrementQty(item));
@@ -86,13 +85,13 @@ export const CardProduct = ({ item }) => {
           ) : (
             <TouchableOpacity
               onPress={() => {
-                addItemToCart(item)
+                dispatch(incrementQty(item)); // cart
+                dispatch(incrementQuantity(item)); //product
               }}
-              style={styles.cardActionM}>
+              style={styles.cardAction}>
               <FeatherIcon color="#fff" name="plus" size={24} />
             </TouchableOpacity>
           )}
-
 
         </View>
       </View>
@@ -174,16 +173,6 @@ const styles = StyleSheet.create({
   cardAction: {
     width: 24,
     height: 24,
-    borderRadius: 9999,
-    backgroundColor: '#ff9801',
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignSelf: 'flex-start',
-    marginTop: 14,
-  },
-  cardActionM: {
-    width: 48,
-    height: 48,
     borderRadius: 9999,
     backgroundColor: '#ff9801',
     alignItems: 'center',
