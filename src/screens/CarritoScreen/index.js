@@ -7,11 +7,13 @@ import generateOrder from '../../services/generateOrder';
 import ENDPOINTS from '../../utils/endpoints';
 import { getProducts } from '../../context/ProductReducer';
 import { items } from '../ListaProductos/products'
+import { useTicketContext } from '../../context/TicketContext';
 
 
 
 export default function ListaProductos() {
 
+  const {setTicket}=useTicketContext()
   const products = useSelector((state) => state.product.product);
   const dispatch = useDispatch();
 
@@ -45,7 +47,11 @@ const cart = useSelector((state) => state.cart.cart);
               generateOrder(cartList)
               .then((res) => {res.status
                 console.log(res)
+                if (res.result != null){
+                  
+                }
               })
+              
                             
               /* clean() */
             }}>

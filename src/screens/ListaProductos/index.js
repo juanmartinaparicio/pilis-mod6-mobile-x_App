@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFetch } from '../../services/useFetch';
 import ENDPOINTS from '../../utils/endpoints';
 import { getProducts } from '../../context/ProductReducer';
-import { items } from './products'
+///import { items } from './products'
 
 
 
@@ -26,8 +26,8 @@ export default function ListaProductos() {
 const URLGET = (ENDPOINTS.PRODUCTS) 
 ///const URLEJEMPLO = 'https://fakestoreapi.com/products'
 //const {data}= useFetch(URLEJEMPLO)
-const {data}= useFetch(URLGET) 
-console.log(JSON.stringify(data))   
+const {data: items}= useFetch(URLGET) 
+console.log(JSON.stringify(items))   
  
 
 //const URLGETIMG = (`https://x-app-api-dev.fl0.io/public/${ENDPOINTS.PRODUCTS}.image`) 
@@ -39,7 +39,12 @@ useEffect(() => {
   if (products.length > 0) return;
 
   const fetchProducts = () => {
-    items.map((item) => dispatch(getProducts(item)));
+    items?.map((item) => {
+      const parseItem = {
+        ...items, quantity:0
+      }
+      dispatch(getProducts(parseItem))
+    });
   };
   fetchProducts();
 }, []);
@@ -53,7 +58,7 @@ const cart = useSelector((state) => state.cart.cart);
         <Text style={styles.title}>Restaurant Menu</Text>
         
         {/* {loading&& <View><Text>Loading.....</Text></View>}  */}
-        {items.map((item ) => {
+        {items?.map((item ) => {
           return (
             <CardProduct key={item.productId} item={item}/>
           );
