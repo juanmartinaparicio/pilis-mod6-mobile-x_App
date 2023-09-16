@@ -12,23 +12,19 @@ import ENDPOINTS from "../utils/endpoints";
  * @throws {Error} Si ocurre un error en la solicitud fetch o al procesar la respuesta.
  */
 async function generateTicket(orderId) {
-    const url = `${ENDPOINTS.TICKETS}/${orderId}`;
-    const method = 'POST';
+  const url = `${ENDPOINTS.TICKETS}/${orderId}`;
+  const method = "POST";
 
-    try {
-        const response = await fetch(url, { method });
+  const response = await fetch(url, { method });
 
-        const status = response.status;
-        const isError = !response.ok;
+  const status = response.status;
+  const isError = !response.ok;
 
-        if (isError) return { status, isError };
-        
-        const result = await response.json();
+  if (isError) return { status, isError };
 
-        return { status, isError, result };
-    } catch (error) {
-        throw new Error('Error al generar el ticket: ' + error.message);
-    }
+  const result = await response.json();
+
+  return { status, isError, result };
 }
 
 /**
