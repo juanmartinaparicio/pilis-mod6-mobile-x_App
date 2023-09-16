@@ -14,9 +14,12 @@ import ENDPOINTS from "../utils/endpoints";
 async function generateOrder(products) {
   const url = `${ENDPOINTS.ORDERS}`;
   const method = "POST";
-  const body = JSON.stringify({products});
+  const headers = { 'Content-Type': 'application/json' };
+  const _products= {products}
+  const body = JSON.stringify(_products,null,4);
+  console.log(body);
 
-  const response = await fetch(url, { method, body });
+  const response = await fetch(url, { method, body, headers });
 
   const status = response.status;
   const isError = !response.ok;

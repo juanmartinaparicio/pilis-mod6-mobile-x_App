@@ -24,16 +24,16 @@ export default function ListaProductos() {
   },[]) */
 ////FUNCIONA, TRAE DATOS DE LA API 
 const URLGET = (ENDPOINTS.PRODUCTS) 
-const URLEJEMPLO = 'https://fakestoreapi.com/products'
-const {data}= useFetch(URLEJEMPLO)
-//const {items, loading}= useFetch(URLGET) 
+///const URLEJEMPLO = 'https://fakestoreapi.com/products'
+//const {data}= useFetch(URLEJEMPLO)
+const {data}= useFetch(URLGET) 
 console.log(JSON.stringify(data))   
  
 
-const URLGETIMG = (`https://x-app-api-dev.fl0.io/public/${ENDPOINTS.PRODUCTS}.image`) 
-/* const {images, loading}= useFetch(URLGETIMG)
-const {images, loading}= useFetch(URLEJEMPLO)
- */
+//const URLGETIMG = (`https://x-app-api-dev.fl0.io/public/${ENDPOINTS.PRODUCTS}.image`) 
+//const {images, loading}= useFetch(URLGETIMG)
+//const {images, loading}= useFetch(URLEJEMPLO)
+
 
 useEffect(() => {
   if (products.length > 0) return;

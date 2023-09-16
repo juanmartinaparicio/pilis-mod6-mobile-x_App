@@ -14,8 +14,9 @@ import ENDPOINTS from "../utils/endpoints";
 async function generateTicket(orderId) {
   const url = `${ENDPOINTS.TICKETS}/${orderId}`;
   const method = "POST";
+  const headers = { 'Content-Type': 'application/json' };
 
-  const response = await fetch(url, { method });
+  const response = await fetch(url, { method, headers });
 
   const status = response.status;
   const isError = !response.ok;

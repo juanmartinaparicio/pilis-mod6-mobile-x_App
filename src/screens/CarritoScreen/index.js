@@ -25,12 +25,15 @@ export default function ListaProductos() {
 }, []); */
 const cart = useSelector((state) => state.cart.cart);
   
-console.log(cart)
+//console.log(JSON.stringify(cart))
+
+
 
   return (
     <SafeAreaView style={{ backgroundColor: '#fff' }}>
       <ScrollView contentContainerStyle={styles.container}>
         {cart.map((item) => {
+          
           return (
             <CardProduct  key={item.productId} item={item}/>
           );
@@ -38,7 +41,12 @@ console.log(cart)
 
         <TouchableOpacity
             onPress={() => {
-              generateOrder(cart)
+              const cartList = cart.map(({ image, label, ordered, likes, price, ...item } ) => (item))
+              generateOrder(cartList)
+              .then((res) => {res.status
+                console.log(res)
+              })
+                            
               /* clean() */
             }}>
             <View style={styles.btn}>

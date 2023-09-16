@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 // FORMA TRADICIONAL DE HACER UNA LLAMADA A LA API
 export function useFetch(url) {
-    const[items, setItems] = useState(null);
+    const[data, setData] = useState(null);
     const[loading, setLoading] = useState(true);
     const[error,setError] = useState(null);
     const[controller, setController] = useState(null);
@@ -13,7 +13,7 @@ export function useFetch(url) {
         setLoading(true);
         fetch(url, {signal: AbortController.signal})
             .then((res)=>res.json())
-            .then((items) =>setData(items))
+            .then((data) =>setData(data))
             .catch((error) => {
                 if(error.name==="AbortError"){
                     console.log("Request cancelled")
@@ -33,6 +33,6 @@ export function useFetch(url) {
         }
     };
 
-    return {items, loading, error, handleCancelRequest}; //se devuelve la  data en objeto pq es mas facil de desestructurar que un array
+    return {data, loading, error, handleCancelRequest}; //se devuelve la  data en objeto pq es mas facil de desestructurar que un array
 }
 ///"https://jsonplaceholder.typicode.com/users"
