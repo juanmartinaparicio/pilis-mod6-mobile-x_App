@@ -10,7 +10,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import CardProduct from './CardProduct';
 import { useDispatch, useSelector } from 'react-redux';
-import { useFetch } from '../../services/useFetch';
+import { useFetch } from '../../hooks/useFetch';
 import ENDPOINTS from '../../utils/endpoints';
 import { getProducts } from '../../context/ProductReducer';
 import { items } from './products';

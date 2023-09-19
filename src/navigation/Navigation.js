@@ -1,10 +1,11 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import SplashScreen from '../screens/SplashScreen';
-import ListaProductos from '../screens/ListaProductos';
-import CarritoScreen from '../screens/CarritoScreen';
-import Settings from '../screens/Settings';
 import { Ionicons } from '@expo/vector-icons';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+
+import CarritoScreen from '../screens/CarritoScreen';
+import ListaProductos from '../screens/ListaProductos';
+import Settings from '../screens/Settings';
+import SplashScreen from '../screens/SplashScreen';
 
 const Tab = createBottomTabNavigator();
 

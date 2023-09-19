@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import {
   StyleSheet,
   SafeAreaView,
@@ -7,15 +8,15 @@ import {
   View,
   Image,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import { CardProduct } from './CardProduct';
 import { useDispatch, useSelector } from 'react-redux';
-import { useFetch } from '../../services/useFetch';
-import generateOrder from '../../services/generateOrder';
-import ENDPOINTS from '../../utils/endpoints';
+
+import { CardProduct } from './CardProduct';
 import { getProducts } from '../../context/ProductReducer';
-import { items } from '../ListaProductos/products';
 import { useTicketContext } from '../../context/TicketContext';
+import { useFetch } from '../../hooks/useFetch';
+import generateOrder from '../../services/orders/generateOrder';
+import ENDPOINTS from '../../utils/endpoints';
+import { items } from '../ListaProductos/products';
 
 export default function CarritoScreen() {
   const { setTicket } = useTicketContext();

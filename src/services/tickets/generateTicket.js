@@ -1,4 +1,4 @@
-import ENDPOINTS from '../utils/endpoints';
+import ENDPOINTS from '../../utils/endpoints';
 
 /**
  * Genera un ticket para una orden mediante una solicitud POST a un endpoint.
