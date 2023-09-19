@@ -1,22 +1,23 @@
-import ENDPOINTS from "../utils/endpoints";
+import { Ticket } from './types';
+
+import ENDPOINTS from '@/utils/endpoints';
+import { Response } from '@/utils/request';
 
 /**
- * Genera un ticket para una orden mediante una solicitud POST a un endpoint.
+ * Obtiene un ticket utilizando su ID.
  * @async
- * @param {string} orderId - El ID de la orden para la cual se va a generar el ticket.
+ * @param {string} ticketId - El ID del ticket que se desea obtener.
  * @returns {Promise<{ status: number, isError: boolean, result: Ticket }>}
- * Un objeto con información sobre el resultado de la solicitud para generar un ticket.
+ * Un objeto con información sobre el resultado de la solicitud para obtener un ticket.
  * - `status` (number): El código de estado HTTP de la respuesta.
  * - `isError` (boolean): Indica si hubo un error en la solicitud (true si hay un error).
- * - `result` (Ticket): Los datos del ticket generado si la solicitud fue exitosa.
+ * - `result` (Ticket): Los datos del ticket obtenido si la solicitud fue exitosa.
  * @throws {Error} Si ocurre un error en la solicitud fetch o al procesar la respuesta.
  */
-async function generateTicket(orderId) {
-  const url = `${ENDPOINTS.TICKETS}/${orderId}`;
-  const method = "POST";
-  const headers = { 'Content-Type': 'application/json' };
-
-  const response = await fetch(url, { method, headers });
+type Result = Response<Ticket>;
+async function getTicket(ticketId: string): Promise<Result> {
+  const url = `${ENDPOINTS.ORDERS}/${ticketId}`;
+  const response = await fetch(url);
 
   const status = response.status;
   const isError = !response.ok;
@@ -48,4 +49,4 @@ async function generateTicket(orderId) {
  * @property {string} createdAt - La fecha y hora de creación del detalle del ticket en formato ISO8601.
  */
 
-export default generateTicket;
+export default getTicket;

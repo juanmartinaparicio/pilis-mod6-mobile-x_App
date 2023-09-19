@@ -14,8 +14,7 @@ const ENDPOINTS = {
   CODE_TICKET: `${API}/tickets/code`,
   REFRESH_TICKET: `${API}/tickets/refresh`,
 
-
   DELIVER: `${API}/tickets/deliver`,
-};
+} as const;
 
-export default ENDPOINTS;
+export default ENDPOINTS;

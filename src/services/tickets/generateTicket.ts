@@ -1,28 +1,35 @@
-import ENDPOINTS from "../utils/endpoints";
+import { Ticket } from './types';
+
+import ENDPOINTS from '@/utils/endpoints';
+import { METHODS, Response } from '@/utils/request';
 
 /**
- * Obtiene un ticket utilizando su ID.
+ * Genera un ticket para una orden mediante una solicitud POST a un endpoint.
  * @async
- * @param {string} ticketId - El ID del ticket que se desea obtener.
+ * @param {string} orderId - El ID de la orden para la cual se va a generar el ticket.
  * @returns {Promise<{ status: number, isError: boolean, result: Ticket }>}
- * Un objeto con información sobre el resultado de la solicitud para obtener un ticket.
+ * Un objeto con información sobre el resultado de la solicitud para generar un ticket.
  * - `status` (number): El código de estado HTTP de la respuesta.
  * - `isError` (boolean): Indica si hubo un error en la solicitud (true si hay un error).
- * - `result` (Ticket): Los datos del ticket obtenido si la solicitud fue exitosa.
+ * - `result` (Ticket): Los datos del ticket generado si la solicitud fue exitosa.
  * @throws {Error} Si ocurre un error en la solicitud fetch o al procesar la respuesta.
  */
-async function getTicket(ticketId) {
-    const url = `${ENDPOINTS.ORDERS}/${ticketId}`;
-    const response = await fetch(url);
+type Result = Response<Ticket>;
+async function generateTicket(orderId: string): Promise<Result> {
+  const url = `${ENDPOINTS.TICKETS}/${orderId}`;
+  const method = METHODS.POST;
+  const headers = { 'Content-Type': 'application/json' };
 
-    const status = response.status;
-    const isError = !response.ok;
+  const response = await fetch(url, { method, headers });
 
-    if (isError) return { status, isError };
-    
-    const result = await response.json();
+  const status = response.status;
+  const isError = !response.ok;
 
-    return { status, isError, result };
+  if (isError) return { status, isError };
+
+  const result = await response.json();
+
+  return { status, isError, result };
 }
 
 /**
@@ -45,4 +52,4 @@ async function getTicket(ticketId) {
  * @property {string} createdAt - La fecha y hora de creación del detalle del ticket en formato ISO8601.
  */
 
-export default getTicket;
+export default generateTicket;

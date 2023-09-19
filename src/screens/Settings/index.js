@@ -1,5 +1,13 @@
 import React from 'react';
-import {  StyleSheet,  View,  TouchableOpacity,  Text,  Switch,  SafeAreaView,  Image,} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Text,
+  Switch,
+  SafeAreaView,
+  Image,
+} from 'react-native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 
 const SECTIONS = [
@@ -18,12 +26,10 @@ const SECTIONS = [
       { icon: 'mail', label: 'Contactanos', type: 'link' },
     ],
   },
-  
 ];
 
 function SectionRow({ label, value, type, index, onPress }) {
   return (
-    
     <View style={[{ marginLeft: 12 }, index !== 0 && styles.splitline]}>
       <TouchableOpacity onPress={onPress}>
         <View style={styles.sectionBodyRow}>
@@ -36,9 +42,9 @@ function SectionRow({ label, value, type, index, onPress }) {
           {(type === 'input' || type === 'link') && (
             <FeatherIcon
               style={{ marginLeft: 6 }}
-              name="chevron-right"
+              name='chevron-right'
               size={24}
-              color="#ababab"
+              color='#ababab'
             />
           )}
         </View>
@@ -60,7 +66,7 @@ export default function Settings() {
         </View>
         <View style={styles.profile}>
           <Image
-            alt=""
+            alt=''
             source={{
               uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2.5&w=256&h=256&q=80',
             }}
@@ -92,11 +98,13 @@ export default function Settings() {
                     index === 0 && { borderTopWidth: 0 },
                     isFirst && styles.rowFirst,
                     isLast && styles.rowLast,
-                  ]}>
+                  ]}
+                >
                   <TouchableOpacity
                     onPress={() => {
                       // handle onPress
-                    }}>
+                    }}
+                  >
                     <View style={styles.row}>
                       <Text style={styles.rowLabel}>{label}</Text>
 
@@ -110,8 +118,8 @@ export default function Settings() {
 
                       {(type === 'input' || type === 'link') && (
                         <FeatherIcon
-                          color="#ababab"
-                          name="chevron-right"
+                          color='#ababab'
+                          name='chevron-right'
                           size={22}
                         />
                       )}

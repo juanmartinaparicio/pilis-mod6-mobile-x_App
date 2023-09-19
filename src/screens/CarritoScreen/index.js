@@ -1,23 +1,24 @@
-import { StyleSheet, SafeAreaView, ScrollView, Text, TouchableOpacity, View, Image, } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import { CardProduct } from './CardProduct';
+import React from 'react';
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { useFetch } from '../../services/useFetch';
-import generateOrder from '../../services/generateOrder';
-import ENDPOINTS from '../../utils/endpoints';
-import { getProducts } from '../../context/ProductReducer';
-import { items } from '../ListaProductos/products'
+
+import { CardProduct } from './CardProduct';
 import { useTicketContext } from '../../context/TicketContext';
-
-
+import generateOrder from '../../services/orders/generateOrder';
 
 export default function CarritoScreen() {
-
-  const {setTicket}=useTicketContext()
-  const products = useSelector((state) => state.product.product);
+  const { setTicket } = useTicketContext();
+  const products = useSelector(state => state.product.product);
   const dispatch = useDispatch();
 
-/* useEffect(() => {
+  /* useEffect(() => {
   if (products.length > 0) return;
 
   const fetchProducts = () => {
@@ -25,40 +26,36 @@ export default function CarritoScreen() {
   };
   fetchProducts();
 }, []); */
-const cart = useSelector((state) => state.cart.cart);
-  
-//console.log(JSON.stringify(cart))
+  const cart = useSelector(state => state.cart.cart);
 
-
+  //console.log(JSON.stringify(cart))
 
   return (
     <SafeAreaView style={{ backgroundColor: '#fff' }}>
       <ScrollView contentContainerStyle={styles.container}>
-        {cart.map((item) => {
-          
-          return (
-            <CardProduct  key={item.id} item={item}/>
-          );
+        {cart.map(item => {
+          return <CardProduct key={item.id} item={item} />;
         })}
 
         <TouchableOpacity
-            onPress={() => {
-              const cartList = cart.map(({ image, name, ordered, likes, price, ...item } ) => (item))
-              generateOrder(cartList)
-              .then((res) => {res.status
-                console.log(res)
-                if (res.result != null){
-                  
-                }
-              })
-              
-                            
-              /* clean() */
-            }}>
-            <View style={styles.btn}>
-              <Text style={styles.btnText}>Realizar la compra</Text>
-            </View>
-          </TouchableOpacity>
+          onPress={() => {
+            const cartList = cart.map(
+              ({ image, name, ordered, likes, price, ...item }) => item,
+            );
+            generateOrder(cartList).then(res => {
+              res.status;
+              console.log(res);
+              if (res.result != null) {
+              }
+            });
+
+            /* clean() */
+          }}
+        >
+          <View style={styles.btn}>
+            <Text style={styles.btnText}>Realizar la compra</Text>
+          </View>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
@@ -91,6 +88,4 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#000',
   },
-})
-
-
+});
