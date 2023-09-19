@@ -112,7 +112,7 @@ export default function SplashScreen() {
                 { scale: scaleLogo },
               ],
             }}
-          ></Animated.Image>
+          />
 
           <Animated.Text
             style={{
