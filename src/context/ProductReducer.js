@@ -11,13 +11,13 @@ export const productSlice = createSlice({
             state.product.push({...action.payload})
         },
         incrementQuantity:(state,action) => {
-            const itemPresent = state.product.find((item) => item.productId === action.payload.productId);
+            const itemPresent = state.product.find((item) => item.id === action.payload.id);
             itemPresent.quantity++;
         },
         decrementQuantity:(state,action) => {
-            const itemPresent = state.product.find((item) => item.productId === action.payload.productId);
+            const itemPresent = state.product.find((item) => item.id === action.payload.id);
             if(itemPresent.quantity == 1){
-                const removeFromCart = state.product.filter((item) => item.productId !== action.payload.productId);
+                const removeFromCart = state.product.filter((item) => item.id !== action.payload.id);
                 state.cart = removeFromCart;
             }else{
                 itemPresent.quantity--;

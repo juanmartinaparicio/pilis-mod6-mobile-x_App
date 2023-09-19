@@ -6,7 +6,7 @@ import { decrementQuantity, incrementQuantity } from "../../context/ProductReduc
 
 
 
-export const CardProduct = ({ item }) => {
+const CardProduct = ({item}) => {
 
   const dispatch = useDispatch();
   const addItemToCart = (item) => {
@@ -14,12 +14,12 @@ export const CardProduct = ({ item }) => {
     dispatch(incrementQuantity(item)); // product array being used
   };
   const cart = useSelector((state) => state.cart.cart);
-
+  const product = useSelector((state) => state.product.product);
   
 
   return (
     <TouchableOpacity
-      key={item.productId}
+      key={item.id}
       onPress={() => {
         // handle onPress
       }}>
@@ -32,41 +32,17 @@ export const CardProduct = ({ item }) => {
         />
 
         <View style={styles.cardBody}>
-          <Text style={styles.cardTitle}>{item.label}</Text>
-
-          <View style={styles.cardRow}>
-            <View
-              style={[
-                styles.cardRowItem,
-                { borderRightColor: '#B2B3BE' },
-              ]}>
-              <FeatherIcon
-                color="#706F7B"
-                name="shopping-bag"
-                size={14}
-              />
-
-              <Text style={styles.cardRowItemText}>{item.ordered}</Text>
-            </View>
-
-            <View style={styles.cardRowItem}>
-              <FeatherIcon color="#706F7B" name="heart" size={14} />
-
-              <Text style={styles.cardRowItemText}>{ }</Text>
-            </View>
-          </View>
-
-          <Text style={styles.cardPrice}>
-            ${item.price.toLocaleString('en-US')}
-          </Text>
+          <Text style={styles.cardTitle}>{item.name}</Text>
+          <Text style={styles.cardPrice}>${item.price}</Text>
         </View>
+
         <View>
-          {cart.some((value) => value.productId === item.productId) ? (
+          {cart.some((value) => value.id === item.id) ? (
             <View >
               <TouchableOpacity
                 onPress={() => {
                   dispatch(incrementQty(item)); // cart
-                  dispatch(incrementQuantity(item)); //product
+                  /* dispatch(incrementQuantity(item)); //product */
                 }}
                 style={styles.cardAction}>
                 <FeatherIcon color="#fff" name="plus" size={24} />
@@ -77,7 +53,7 @@ export const CardProduct = ({ item }) => {
               <TouchableOpacity
                 onPress={() => {
                   dispatch(decrementQty(item));
-                  dispatch(decrementQuantity(item));
+                  /* dispatch(decrementQuantity(item)); */
                 }}
                 style={styles.cardAction}>
                 <FeatherIcon color="#fff" name="minus" size={24} />
@@ -86,7 +62,7 @@ export const CardProduct = ({ item }) => {
           ) : (
             <TouchableOpacity
               onPress={() => {
-                addItemToCart(item)
+                dispatch(addToCart(item))
               }}
               style={styles.cardActionM}>
               <FeatherIcon color="#fff" name="plus" size={24} />
@@ -100,7 +76,7 @@ export const CardProduct = ({ item }) => {
 
   )
 }
-
+export default CardProduct;
 
 
 

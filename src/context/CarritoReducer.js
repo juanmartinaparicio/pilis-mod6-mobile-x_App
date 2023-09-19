@@ -7,7 +7,7 @@ export const carritoSlice = createSlice({
     },
     reducers:{
         addToCart : (state,action) => {
-            const itemPresent = state.cart.find((item) => item.productId === action.payload.productId);
+            const itemPresent = state.cart.find((item) => item.id === action.payload.id);
             if(itemPresent){
                 itemPresent.quantity++;
             }else{
@@ -15,17 +15,17 @@ export const carritoSlice = createSlice({
             }
         },
         removeFromCart :(state,action) => {
-            const removeFromCart = state.cart.filter((item) => item.productId !== action.payload.productId);
+            const removeFromCart = state.cart.filter((item) => item.id !== action.payload.id);
             state.cart = removeFromCart;
         },
         incrementQty: (state,action) => {
-            const itemPresent = state.cart.find((item) => item.productId === action.payload.productId);
+            const itemPresent = state.cart.find((item) => item.id === action.payload.id);
             itemPresent.quantity++;
         },
         decrementQty : (state,action) => {
-            const itemPresent = state.cart.find((item) => item.productId === action.payload.productId);
+            const itemPresent = state.cart.find((item) => item.id === action.payload.id);
             if(itemPresent.quantity == 1){
-                const removeFromCart = state.cart.filter((item) => item.productId !== action.payload.productId);
+                const removeFromCart = state.cart.filter((item) => item.id !== action.payload.id);
                 state.cart = removeFromCart;
             }else{
                 itemPresent.quantity--;

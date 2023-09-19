@@ -11,7 +11,7 @@ import { useTicketContext } from '../../context/TicketContext';
 
 
 
-export default function ListaProductos() {
+export default function CarritoScreen() {
 
   const {setTicket}=useTicketContext()
   const products = useSelector((state) => state.product.product);
@@ -37,13 +37,13 @@ const cart = useSelector((state) => state.cart.cart);
         {cart.map((item) => {
           
           return (
-            <CardProduct  key={item.productId} item={item}/>
+            <CardProduct  key={item.id} item={item}/>
           );
         })}
 
         <TouchableOpacity
             onPress={() => {
-              const cartList = cart.map(({ image, label, ordered, likes, price, ...item } ) => (item))
+              const cartList = cart.map(({ image, name, ordered, likes, price, ...item } ) => (item))
               generateOrder(cartList)
               .then((res) => {res.status
                 console.log(res)
