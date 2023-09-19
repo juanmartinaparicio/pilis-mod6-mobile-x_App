@@ -1,4 +1,4 @@
-export const HOST = "https://x-app-api-dev.fl0.io";
+export const HOST = 'https://x-app-api-dev.fl0.io';
 export const API = `${HOST}/api/v1`;
 
 const ENDPOINTS = {

@@ -1,4 +1,4 @@
-import ENDPOINTS from "../utils/endpoints";
+import ENDPOINTS from '../utils/endpoints';
 
 /**
  * Genera una orden mediante una solicitud POST a un endpoint.
@@ -13,10 +13,10 @@ import ENDPOINTS from "../utils/endpoints";
  */
 async function generateOrder(products) {
   const url = `${ENDPOINTS.ORDERS}`;
-  const method = "POST";
+  const method = 'POST';
   const headers = { 'Content-Type': 'application/json' };
-  const _products= {products}
-  const body = JSON.stringify(_products,null,4);
+  const _products = { products };
+  const body = JSON.stringify(_products, null, 4);
   console.log(body);
 
   const response = await fetch(url, { method, body, headers });

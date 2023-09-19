@@ -1,4 +1,4 @@
-import ENDPOINTS from "../utils/endpoints";
+import ENDPOINTS from '../utils/endpoints';
 
 /**
  * Obtiene una orden utilizando su ID.
@@ -12,17 +12,17 @@ import ENDPOINTS from "../utils/endpoints";
  * @throws {Error} Si ocurre un error en la solicitud fetch o al procesar la respuesta.
  */
 async function getOrder(id) {
-    const url = `${ENDPOINTS.ORDERS}/${id}`;
-    const response = await fetch(url);
+  const url = `${ENDPOINTS.ORDERS}/${id}`;
+  const response = await fetch(url);
 
-    const status = response.status;
-    const isError = !response.ok;
+  const status = response.status;
+  const isError = !response.ok;
 
-    if (isError) return { status, isError };
+  if (isError) return { status, isError };
 
-    const result = await response.json();
+  const result = await response.json();
 
-    return { status, isError, result };
+  return { status, isError, result };
 }
 
 /**

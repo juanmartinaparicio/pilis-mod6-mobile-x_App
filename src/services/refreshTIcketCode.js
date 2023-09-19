@@ -1,4 +1,4 @@
-import ENDPOINTS from "../utils/endpoints";
+import ENDPOINTS from '../utils/endpoints';
 
 /**
  * Realiza una solicitud para actualizar el código de un ticket mediante un método PUT a un endpoint.
@@ -14,19 +14,19 @@ import ENDPOINTS from "../utils/endpoints";
  * @throws {Error} Si ocurre un error en la solicitud fetch o al procesar la respuesta.
  */
 async function refreshTicketCode(ticketId) {
-    const url = `${ENDPOINTS.REFRESH_TICKET}/${ticketId}`;
-    const method = 'PUT';
+  const url = `${ENDPOINTS.REFRESH_TICKET}/${ticketId}`;
+  const method = 'PUT';
 
-    const response = await fetch(url, { method });
+  const response = await fetch(url, { method });
 
-    const status = response.status;
-    const isError = !response.ok;
+  const status = response.status;
+  const isError = !response.ok;
 
-    if (isError) return { status, isError };
-    
-    const result = await response.json();
+  if (isError) return { status, isError };
 
-    return { status, isError, result };
+  const result = await response.json();
+
+  return { status, isError, result };
 }
 
 export default refreshTicketCode;

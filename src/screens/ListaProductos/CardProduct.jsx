@@ -1,32 +1,44 @@
-import { StyleSheet, SafeAreaView, ScrollView, Text, TouchableOpacity, View, Image } from 'react-native';
+import {
+  StyleSheet,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+  Image,
+} from 'react-native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart, decrementQty, incrementQty } from "../../context/CarritoReducer";
-import { decrementQuantity, incrementQuantity } from "../../context/ProductReducer";
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addToCart,
+  decrementQty,
+  incrementQty,
+} from '../../context/CarritoReducer';
+import {
+  decrementQuantity,
+  incrementQuantity,
+} from '../../context/ProductReducer';
 
-
-
-const CardProduct = ({item}) => {
-
+const CardProduct = ({ item }) => {
   const dispatch = useDispatch();
-  const addItemToCart = (item) => {
+  const addItemToCart = item => {
     dispatch(addToCart(item)); // cart array being used
     dispatch(incrementQuantity(item)); // product array being used
   };
-  const cart = useSelector((state) => state.cart.cart);
-  const product = useSelector((state) => state.product.product);
-  
+  const cart = useSelector(state => state.cart.cart);
+  const product = useSelector(state => state.product.product);
 
   return (
     <TouchableOpacity
       key={item.id}
       onPress={() => {
         // handle onPress
-      }}>
+      }}
+    >
       <View style={styles.card}>
         <Image
-          alt=""
-          resizeMode="cover"
+          alt=''
+          resizeMode='cover'
           source={{ uri: item.image }}
           style={styles.cardImg}
         />
@@ -37,49 +49,44 @@ const CardProduct = ({item}) => {
         </View>
 
         <View>
-          {cart.some((value) => value.id === item.id) ? (
-            <View >
+          {cart.some(value => value.id === item.id) ? (
+            <View>
               <TouchableOpacity
                 onPress={() => {
                   dispatch(incrementQty(item)); // cart
                   /* dispatch(incrementQuantity(item)); //product */
                 }}
-                style={styles.cardAction}>
-                <FeatherIcon color="#fff" name="plus" size={24} />
+                style={styles.cardAction}
+              >
+                <FeatherIcon color='#fff' name='plus' size={24} />
               </TouchableOpacity>
-
-              
 
               <TouchableOpacity
                 onPress={() => {
                   dispatch(decrementQty(item));
                   /* dispatch(decrementQuantity(item)); */
                 }}
-                style={styles.cardAction}>
-                <FeatherIcon color="#fff" name="minus" size={24} />
+                style={styles.cardAction}
+              >
+                <FeatherIcon color='#fff' name='minus' size={24} />
               </TouchableOpacity>
             </View>
           ) : (
             <TouchableOpacity
               onPress={() => {
-                dispatch(addToCart(item))
+                dispatch(addToCart(item));
               }}
-              style={styles.cardActionM}>
-              <FeatherIcon color="#fff" name="plus" size={24} />
+              style={styles.cardActionM}
+            >
+              <FeatherIcon color='#fff' name='plus' size={24} />
             </TouchableOpacity>
           )}
-
-
         </View>
       </View>
     </TouchableOpacity>
-
-  )
-}
+  );
+};
 export default CardProduct;
-
-
-
 
 const styles = StyleSheet.create({
   container: {

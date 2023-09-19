@@ -1,4 +1,4 @@
-import ENDPOINTS from "../utils/endpoints";
+import ENDPOINTS from '../utils/endpoints';
 
 /**
  * Obtiene un ticket utilizando su ID.
@@ -12,17 +12,17 @@ import ENDPOINTS from "../utils/endpoints";
  * @throws {Error} Si ocurre un error en la solicitud fetch o al procesar la respuesta.
  */
 async function getTicket(ticketId) {
-    const url = `${ENDPOINTS.ORDERS}/${ticketId}`;
-    const response = await fetch(url);
+  const url = `${ENDPOINTS.ORDERS}/${ticketId}`;
+  const response = await fetch(url);
 
-    const status = response.status;
-    const isError = !response.ok;
+  const status = response.status;
+  const isError = !response.ok;
 
-    if (isError) return { status, isError };
-    
-    const result = await response.json();
+  if (isError) return { status, isError };
 
-    return { status, isError, result };
+  const result = await response.json();
+
+  return { status, isError, result };
 }
 
 /**

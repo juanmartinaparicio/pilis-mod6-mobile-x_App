@@ -1,4 +1,4 @@
-import ENDPOINTS from "../utils/endpoints";
+import ENDPOINTS from '../utils/endpoints';
 
 /**
  * Genera un ticket para una orden mediante una solicitud POST a un endpoint.
@@ -13,7 +13,7 @@ import ENDPOINTS from "../utils/endpoints";
  */
 async function generateTicket(orderId) {
   const url = `${ENDPOINTS.TICKETS}/${orderId}`;
-  const method = "POST";
+  const method = 'POST';
   const headers = { 'Content-Type': 'application/json' };
 
   const response = await fetch(url, { method, headers });
