@@ -1,23 +1,13 @@
-import {
-  StyleSheet,
-  SafeAreaView,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-  Image,
-} from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import { useDispatch, useSelector } from 'react-redux';
+
 import {
   addToCart,
   decrementQty,
   incrementQty,
-} from '../../context/CarritoReducer';
-import {
-  decrementQuantity,
-  incrementQuantity,
-} from '../../context/ProductReducer';
+} from '../../context/redux/reducers/CarritoReducer';
+import { incrementQuantity } from '../../context/redux/reducers/ProductReducer';
 
 export const CardProduct = ({ item }) => {
   const dispatch = useDispatch();

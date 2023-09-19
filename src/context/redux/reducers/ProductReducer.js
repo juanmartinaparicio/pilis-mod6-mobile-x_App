@@ -19,7 +19,7 @@ export const productSlice = createSlice({
       const itemPresent = state.product.find(
         item => item.id === action.payload.id,
       );
-      if (itemPresent.quantity == 1) {
+      if (itemPresent.quantity === 1) {
         const removeFromCart = state.product.filter(
           item => item.id !== action.payload.id,
         );

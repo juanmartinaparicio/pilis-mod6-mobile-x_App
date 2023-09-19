@@ -32,7 +32,7 @@ export const carritoSlice = createSlice({
       const itemPresent = state.cart.find(
         item => item.id === action.payload.id,
       );
-      if (itemPresent.quantity == 1) {
+      if (itemPresent.quantity === 1) {
         const removeFromCart = state.cart.filter(
           item => item.id !== action.payload.id,
         );

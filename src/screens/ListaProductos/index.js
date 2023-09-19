@@ -1,19 +1,10 @@
-import {
-  StyleSheet,
-  SafeAreaView,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-  Image,
-} from 'react-native';
-import React, { useEffect, useState } from 'react';
-import CardProduct from './CardProduct';
+import React, { useEffect } from 'react';
+import { SafeAreaView, ScrollView, StyleSheet, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { useFetch } from '../../hooks/useFetch';
-import ENDPOINTS from '../../utils/endpoints';
-import { getProducts } from '../../context/ProductReducer';
+
+import CardProduct from './CardProduct';
 import { items } from './products';
+import { getProducts } from '../../context/redux/reducers/ProductReducer';
 
 export default function ListaProductos() {
   const products = useSelector(state => state.product.product);
