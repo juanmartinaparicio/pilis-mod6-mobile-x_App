@@ -1,9 +1,12 @@
-import ENDPOINTS from '../utils/endpoints';
+import { Order } from './types';
+
+import ENDPOINTS from '@/utils/endpoints';
+import { Response } from '@/utils/request';
 
 /**
  * Obtiene una orden utilizando su ID.
  * @async
- * @param {string} id - El ID de la orden que se desea obtener.
+ * @param {string} orderId - El ID de la orden que se desea obtener.
  * @returns {Promise<{ status: number, isError: boolean, result: Order }>}
  * Un objeto con información sobre el resultado de la solicitud para obtener una orden.
  * - `status` (number): El código de estado HTTP de la respuesta.
@@ -11,8 +14,10 @@ import ENDPOINTS from '../utils/endpoints';
  * - `result` (Order): Los datos de la orden obtenida si la solicitud fue exitosa.
  * @throws {Error} Si ocurre un error en la solicitud fetch o al procesar la respuesta.
  */
-async function getOrder(id) {
-  const url = `${ENDPOINTS.ORDERS}/${id}`;
+
+type Result = Response<Order>;
+async function getOrder(orderId: string): Promise<Result> {
+  const url = `${ENDPOINTS.ORDERS}/${orderId}`;
   const response = await fetch(url);
 
   const status = response.status;

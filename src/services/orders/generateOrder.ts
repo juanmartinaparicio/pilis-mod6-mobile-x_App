@@ -1,4 +1,7 @@
-import ENDPOINTS from '../../utils/endpoints';
+import { Cart, OrderInfo, ProductCart } from './types';
+
+import ENDPOINTS from '@/utils/endpoints';
+import { METHODS, Response } from '@/utils/request';
 
 /**
  * Genera una orden mediante una solicitud POST a un endpoint.
@@ -11,15 +14,20 @@ import ENDPOINTS from '../../utils/endpoints';
  * - `result` (Order): Los datos de la orden generada si la solicitud fue exitosa.
  * @throws {Error} Si ocurre un error en la solicitud fetch o al procesar la respuesta.
  */
-async function generateOrder(products) {
-  const url = `${ENDPOINTS.ORDERS}`;
-  const method = 'POST';
-  const headers = { 'Content-Type': 'application/json' };
-  const _products = { products };
-  const body = JSON.stringify(_products, null, 4);
-  console.log(body);
 
-  const response = await fetch(url, { method, body, headers });
+type Result = Response<OrderInfo>;
+async function generateOrder(products: ProductCart[]): Promise<Result> {
+  const url = `${ENDPOINTS.ORDERS}`;
+
+  const method = METHODS.POST;
+  const headers = { 'Content-Type': 'application/json' };
+
+  const cart: Cart = { products };
+  const body = JSON.stringify(cart);
+
+  const options = { method, body, headers };
+
+  const response = await fetch(url, options);
 
   const status = response.status;
   const isError = !response.ok;
