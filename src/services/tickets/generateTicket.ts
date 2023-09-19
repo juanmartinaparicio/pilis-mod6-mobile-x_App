@@ -1,4 +1,7 @@
-import ENDPOINTS from '../../utils/endpoints';
+import { Ticket } from './types';
+
+import ENDPOINTS from '@/utils/endpoints';
+import { METHODS, Response } from '@/utils/request';
 
 /**
  * Genera un ticket para una orden mediante una solicitud POST a un endpoint.
@@ -11,9 +14,10 @@ import ENDPOINTS from '../../utils/endpoints';
  * - `result` (Ticket): Los datos del ticket generado si la solicitud fue exitosa.
  * @throws {Error} Si ocurre un error en la solicitud fetch o al procesar la respuesta.
  */
-async function generateTicket(orderId) {
+type Result = Response<Ticket>;
+async function generateTicket(orderId: string): Promise<Result> {
   const url = `${ENDPOINTS.TICKETS}/${orderId}`;
-  const method = 'POST';
+  const method = METHODS.POST;
   const headers = { 'Content-Type': 'application/json' };
 
   const response = await fetch(url, { method, headers });

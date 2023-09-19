@@ -1,5 +1,7 @@
-import ENDPOINTS from '../utils/endpoints';
+import { Ticket } from './types';
 
+import ENDPOINTS from '@/utils/endpoints';
+import { Response } from '@/utils/request';
 /**
  * Realiza una solicitud para actualizar el código de un ticket mediante un método PUT a un endpoint.
  * @async
@@ -13,7 +15,8 @@ import ENDPOINTS from '../utils/endpoints';
  *   - `code` (string): El nuevo código asignado al ticket.
  * @throws {Error} Si ocurre un error en la solicitud fetch o al procesar la respuesta.
  */
-async function refreshTicketCode(ticketId) {
+type Result = Response<Ticket>;
+async function refreshTicketCode(ticketId: string): Promise<Result> {
   const url = `${ENDPOINTS.REFRESH_TICKET}/${ticketId}`;
   const method = 'PUT';
 

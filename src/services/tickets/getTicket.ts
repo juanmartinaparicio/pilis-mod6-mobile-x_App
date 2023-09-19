@@ -1,4 +1,7 @@
-import ENDPOINTS from '../utils/endpoints';
+import { Ticket } from './types';
+
+import ENDPOINTS from '@/utils/endpoints';
+import { Response } from '@/utils/request';
 
 /**
  * Obtiene un ticket utilizando su ID.
@@ -11,7 +14,8 @@ import ENDPOINTS from '../utils/endpoints';
  * - `result` (Ticket): Los datos del ticket obtenido si la solicitud fue exitosa.
  * @throws {Error} Si ocurre un error en la solicitud fetch o al procesar la respuesta.
  */
-async function getTicket(ticketId) {
+type Result = Response<Ticket>;
+async function getTicket(ticketId: string): Promise<Result> {
   const url = `${ENDPOINTS.ORDERS}/${ticketId}`;
   const response = await fetch(url);
 
