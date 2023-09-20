@@ -16,7 +16,7 @@ async function getAllProducts(): Promise<Result> {
   const _result: Product[] = await response.json();
   const result = _result.map(p => ({
     ...p,
-    image: `${ENDPOINTS.PUBLIC}/${p.image}`,
+    image: p.image === null ? null : `${ENDPOINTS.PUBLIC}/${p.image}`,
   }));
 
   return { status, isError, result };
