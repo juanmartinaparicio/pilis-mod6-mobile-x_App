@@ -9,41 +9,45 @@ import {
 } from '../../context/redux/reducers/CarritoReducer';
 import { incrementQuantity } from '../../context/redux/reducers/ProductReducer';
 
-const CardProduct = ({ item }) => {
+import { Product } from '@/services/products/types';
+
+interface Props {
+  product: Product;
+}
+
+const CardProduct = ({ product }: Props) => {
   const dispatch = useDispatch();
   const addItemToCart = item => {
     dispatch(addToCart(item)); // cart array being used
     dispatch(incrementQuantity(item)); // product array being used
   };
   const cart = useSelector(state => state.cart.cart);
-  const product = useSelector(state => state.product.product);
 
   return (
     <TouchableOpacity
-      key={item.id}
       onPress={() => {
         // handle onPress
       }}
     >
       <View style={styles.card}>
         <Image
-          alt=''
+          alt={`product - ${product.name}`}
           resizeMode='cover'
-          source={{ uri: item.image }}
+          source={{ uri: product.image ?? undefined }}
           style={styles.cardImg}
         />
 
         <View style={styles.cardBody}>
-          <Text style={styles.cardTitle}>{item.name}</Text>
-          <Text style={styles.cardPrice}>${item.price}</Text>
+          <Text style={styles.cardTitle}>{product.name}</Text>
+          <Text style={styles.cardPrice}>${product.price}</Text>
         </View>
 
         <View>
-          {cart.some(value => value.id === item.id) ? (
+          {cart.some(value => value.id === product.id) ? (
             <View>
               <TouchableOpacity
                 onPress={() => {
-                  dispatch(incrementQty(item)); // cart
+                  dispatch(incrementQty(product)); // cart
                   /* dispatch(incrementQuantity(item)); //product */
                 }}
                 style={styles.cardAction}
@@ -53,7 +57,7 @@ const CardProduct = ({ item }) => {
 
               <TouchableOpacity
                 onPress={() => {
-                  dispatch(decrementQty(item));
+                  dispatch(decrementQty(product));
                   /* dispatch(decrementQuantity(item)); */
                 }}
                 style={styles.cardAction}
@@ -64,7 +68,7 @@ const CardProduct = ({ item }) => {
           ) : (
             <TouchableOpacity
               onPress={() => {
-                dispatch(addToCart(item));
+                dispatch(addToCart(product));
               }}
               style={styles.cardActionM}
             >
@@ -76,6 +80,7 @@ const CardProduct = ({ item }) => {
     </TouchableOpacity>
   );
 };
+
 export default CardProduct;
 
 const styles = StyleSheet.create({

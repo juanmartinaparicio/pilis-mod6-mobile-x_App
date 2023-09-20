@@ -30,7 +30,7 @@ export default function ListaProductos() {
         <Text style={styles.title}>Restaurant Menu</Text>
 
         {products?.map((product: Product) => (
-          <CardProduct key={product.id} item={product} />
+          <CardProduct key={product.id} product={product} />
         ))}
       </ScrollView>
     </SafeAreaView>
