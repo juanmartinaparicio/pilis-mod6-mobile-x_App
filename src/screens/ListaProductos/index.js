@@ -34,7 +34,7 @@ console.log(JSON.stringify(items)) */
         <Text style={styles.title}>Restaurant Menu</Text>
 
         {items?.map(item => (
-          <CardProduct key={item.id} item={item} />
+          <CardProduct key={item.id} product={item} />
         ))}
       </ScrollView>
     </SafeAreaView>
