@@ -27,7 +27,7 @@ export default function ListaProductos() {
   return (
     <SafeAreaView style={{ backgroundColor: '#fff' }}>
       <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.title}>Restaurant Menu</Text>
+        
 
         {products?.map((product: Product) => (
           <CardProduct key={product.id} product={product} />

@@ -13,10 +13,10 @@ function TabGroup() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarShowLabel: false,
+                tabBarShowLabel: false,
         tabBarIcon: ({ color, focused, size }) => {
           let iconName;
-          if (route.name === 'SplashScreen') {
+          if (route.name === 'Menu') {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'settings') {
             iconName = focused ? 'settings' : 'settings-outline';
@@ -27,8 +27,8 @@ function TabGroup() {
         },
       })}
     >
-      <Tab.Screen name='SplashScreen' component={SplashScreen} />
-      <Tab.Screen name='Carrito' component={CarritoScreen} />
+      <Tab.Screen name='Menu' component={SplashScreen}  />
+      <Tab.Screen name='Carrito' component={CarritoScreen} /* options={{ tabBarBadge: 3 }} *//>
       <Tab.Screen name='settings' component={Settings} />
     </Tab.Navigator>
   );
