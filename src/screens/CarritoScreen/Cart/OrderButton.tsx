@@ -39,22 +39,38 @@ export default function OrderButton({ cart }: Props) {
       );
     };
 
+    console.log(cart);
+    
+    const getTotal =()=> {
+      let total=0;
+      cart.map((item: any) => {total= total+ item.quantity* item.price
+      });
+      return total;
+      
+    }; 
+
+
+
+
   return (
     <TouchableOpacity 
       onPress={showAlert}
       >
+      
       <View style={styles.btn}>
+        <Text style={styles.btnText}>TOTAL ${getTotal()}</Text>
         <Text style={styles.btnText}>Realizar la compra</Text>
       </View>
+
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   btn: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     borderRadius: 8,
     paddingVertical: 8,
     paddingHorizontal: 16,
