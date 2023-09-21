@@ -41,10 +41,18 @@ export const carritoSlice = createSlice({
         itemPresent.quantity--;
       }
     },
+    cleanCart: state => {
+      state.cart = [];
+    },
   },
 });
 
-export const { addToCart, removeFromCart, incrementQty, decrementQty } =
-  carritoSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  incrementQty,
+  decrementQty,
+  cleanCart,
+} = carritoSlice.actions;
 
 export default carritoSlice.reducer;
