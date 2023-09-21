@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import generateOrder from '@/services/orders/generateOrder';
 import { ProductCart } from '@/services/orders/types';
@@ -15,8 +15,29 @@ export default function OrderButton({ cart }: Props) {
     });
   };
 
+  const showAlert = ()=>{
+    Alert.alert(
+        'Alerta',
+        'Confirma el pedido?',
+        [
+          {
+            text: 'Volver',
+            onPress: () => {order},
+            style: 'destructive',
+          },              
+          { text: 'Continuar',
+           onPress: () => console.log('Yes Pressed') },
+          
+        ],
+        { cancelable: true }
+        //clicking out side of alert will not cancel
+      );
+    };
+
   return (
-    <TouchableOpacity onPress={order}>
+    <TouchableOpacity 
+      onPress={showAlert}
+      >
       <View style={styles.btn}>
         <Text style={styles.btnText}>Realizar la compra</Text>
       </View>
