@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useDispatch } from 'react-redux';
 
+import { cleanCart } from '@/context/redux/reducers/CarritoReducer';
 import generateOrder from '@/services/orders/generateOrder';
 import { ProductCart } from '@/services/orders/types';
 
@@ -9,9 +11,12 @@ interface Props {
 }
 
 export default function OrderButton({ cart }: Props) {
+  const dispatch = useDispatch();
+
   const order = () => {
     generateOrder(cart).then(res => {
       console.log(res);
+      dispatch(cleanCart());
     });
   };
 
