@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
-import { useDispatch, useSelector } from 'react-redux';
 
+import { useAppDispatch, useAppSelector } from '@/context/redux/hooks';
 import {
   addToCart,
   decrementQty,
@@ -15,8 +15,8 @@ interface Props {
 }
 
 export default function CartOption({ product }: Props) {
-  const dispatch = useDispatch();
-  const cart = useSelector((state: any) => state.cart.cart);
+  const dispatch = useAppDispatch();
+  const cart = useAppSelector(state => state.cart.cart);
 
   const cartProduct = cart.filter((p: any) => p.id === product.id)[0];
   const isProductInCart = cart.some(
