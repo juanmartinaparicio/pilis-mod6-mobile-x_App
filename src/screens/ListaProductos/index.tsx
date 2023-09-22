@@ -30,9 +30,7 @@ export default function ListaProductos() {
       <ScrollView contentContainerStyle={styles.container}>
         <Categories />
         {products?.map((product: Product) => (
-          <>
-            <CardProduct key={product.id} product={product} />
-          </>
+          <CardProduct key={product.id} product={product} />
         ))}
       </ScrollView>
     </SafeAreaView>
