@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, Text } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CardProduct from './CardProduct';
+import Categories from './Categories';
 import { getProducts } from '../../context/redux/reducers/ProductReducer';
 
 import getAllProducts from '@/services/products/getAllProducts';
 import { Product } from '@/services/products/types';
-import Categories from './Categories';
 
 export default function ListaProductos() {
   const products = useSelector((state: any) => state.product.product);
@@ -28,8 +28,7 @@ export default function ListaProductos() {
   return (
     <SafeAreaView style={{ backgroundColor: '#fff' }}>
       <ScrollView contentContainerStyle={styles.container}>
-
-        <Categories/>
+        <Categories />
         {products?.map((product: Product) => (
           <>
             <CardProduct key={product.id} product={product} />

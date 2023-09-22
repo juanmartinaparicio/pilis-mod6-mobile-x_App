@@ -32,11 +32,10 @@ export default function OrderButton({ cart }: Props) {
         },
         {
           text: 'Continuar',
-          onPress: order
+          onPress: order,
         },
-
       ],
-      { cancelable: true }
+      { cancelable: true },
       //clicking out side of alert will not cancel
     );
   };
@@ -46,25 +45,17 @@ export default function OrderButton({ cart }: Props) {
   const getTotal = () => {
     let total = 0;
     cart.map((item: any) => {
-      total = total + item.quantity * item.price
+      total = total + item.quantity * item.price;
     });
     return total;
-
   };
 
-
-
-
   return (
-    <TouchableOpacity
-      onPress={showAlert}
-    >
-
+    <TouchableOpacity onPress={showAlert}>
       <View style={styles.btn}>
         <Text style={styles.btnText}>TOTAL ${getTotal()}</Text>
         <Text style={styles.btnText}>Realizar la compra</Text>
       </View>
-
     </TouchableOpacity>
   );
 }

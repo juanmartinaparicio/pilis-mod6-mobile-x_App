@@ -28,6 +28,7 @@ const SECTIONS = [
   },
 ];
 
+// eslint-disable-next-line no-unused-vars
 function SectionRow({ label, value, type, index, onPress }) {
   return (
     <View style={[{ marginLeft: 12 }, index !== 0 && styles.splitline]}>
