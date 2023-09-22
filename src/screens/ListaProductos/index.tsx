@@ -7,6 +7,7 @@ import { getProducts } from '../../context/redux/reducers/ProductReducer';
 
 import getAllProducts from '@/services/products/getAllProducts';
 import { Product } from '@/services/products/types';
+import Categories from './Categories';
 
 export default function ListaProductos() {
   const products = useSelector((state: any) => state.product.product);
@@ -27,10 +28,12 @@ export default function ListaProductos() {
   return (
     <SafeAreaView style={{ backgroundColor: '#fff' }}>
       <ScrollView contentContainerStyle={styles.container}>
-        
 
+        <Categories/>
         {products?.map((product: Product) => (
-          <CardProduct key={product.id} product={product} />
+          <>
+            <CardProduct key={product.id} product={product} />
+          </>
         ))}
       </ScrollView>
     </SafeAreaView>

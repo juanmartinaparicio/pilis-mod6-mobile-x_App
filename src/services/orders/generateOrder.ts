@@ -24,6 +24,7 @@ async function generateOrder(products: ProductCart[]): Promise<Result> {
 
   const cart: Cart = { products };
   const body = JSON.stringify(cart);
+  console.log(body);
 
   const options = { method, body, headers };
 

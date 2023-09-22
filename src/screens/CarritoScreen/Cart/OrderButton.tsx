@@ -20,43 +20,46 @@ export default function OrderButton({ cart }: Props) {
     });
   };
 
-  const showAlert = ()=>{
+  const showAlert = () => {
     Alert.alert(
-        'Alerta',
-        'Confirma el pedido?',
-        [
-          {
-            text: 'Volver',
-            onPress: () => {order},
-            style: 'destructive',
-          },              
-          { text: 'Continuar',
-           onPress: () => console.log('Yes Pressed') },
-          
-        ],
-        { cancelable: true }
-        //clicking out side of alert will not cancel
-      );
-    };
+      'Alerta',
+      'Confirma el pedido?',
+      [
+        {
+          text: 'Volver',
+          onPress: () => console.log('Yes Pressed'),
+          style: 'destructive',
+        },
+        {
+          text: 'Continuar',
+          onPress: order
+        },
 
-    console.log(cart);
-    
-    const getTotal =()=> {
-      let total=0;
-      cart.map((item: any) => {total= total+ item.quantity* item.price
-      });
-      return total;
-      
-    }; 
+      ],
+      { cancelable: true }
+      //clicking out side of alert will not cancel
+    );
+  };
+
+  //console.log(cart);
+
+  const getTotal = () => {
+    let total = 0;
+    cart.map((item: any) => {
+      total = total + item.quantity * item.price
+    });
+    return total;
+
+  };
 
 
 
 
   return (
-    <TouchableOpacity 
+    <TouchableOpacity
       onPress={showAlert}
-      >
-      
+    >
+
       <View style={styles.btn}>
         <Text style={styles.btnText}>TOTAL ${getTotal()}</Text>
         <Text style={styles.btnText}>Realizar la compra</Text>
