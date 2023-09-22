@@ -1,10 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { Product } from '@/services/products/types';
+
+export interface ProductCart extends Product {
+  quantity: number;
+}
+
+type CounterState = {
+  cart: ProductCart[];
+};
+
+const initialState: CounterState = {
+  cart: [],
+};
+
 export const carritoSlice = createSlice({
   name: 'carrito',
-  initialState: {
-    cart: [],
-  },
+  initialState,
   reducers: {
     addToCart: (state, action) => {
       const itemPresent = state.cart.find(
@@ -26,12 +38,16 @@ export const carritoSlice = createSlice({
       const itemPresent = state.cart.find(
         item => item.id === action.payload.id,
       );
+
+      if (itemPresent === undefined) return;
       itemPresent.quantity++;
     },
     decrementQty: (state, action) => {
       const itemPresent = state.cart.find(
         item => item.id === action.payload.id,
       );
+      if (itemPresent === undefined) return;
+
       if (itemPresent.quantity === 1) {
         const removeFromCart = state.cart.filter(
           item => item.id !== action.payload.id,
