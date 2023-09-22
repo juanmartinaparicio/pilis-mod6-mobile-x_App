@@ -1,20 +1,13 @@
-export interface ProductCart {
-  productId: string;
+export interface cartProduct {
+  id: string;
   quantity: number;
 }
 
 export interface Cart {
-  products: ProductCart[];
+  products: cartProduct[];
 }
 
-export interface OrderInfo {
-  id: string;
-  status: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface ProductOrder {
+export interface Detail {
   id: string;
   description: string;
   quantity: string;
@@ -22,6 +15,13 @@ export interface ProductOrder {
   createdAt: string;
 }
 
-export interface Order extends OrderInfo {
-  orderDetail: ProductOrder[];
+export interface Order {
+  id: string;
+  code: string;
+  status: string;
+  isExpired: boolean;
+  isDelivered: boolean;
+  createAt: string;
+  updateAt: string;
+  detail: Detail[];
 }

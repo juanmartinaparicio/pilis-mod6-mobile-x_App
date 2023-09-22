@@ -1,4 +1,4 @@
-import { Cart, OrderInfo, ProductCart } from './types';
+import { Cart, Order, cartProduct } from './types';
 
 import ENDPOINTS from '@/utils/endpoints';
 import { METHODS, Response } from '@/utils/request';
@@ -15,8 +15,8 @@ import { METHODS, Response } from '@/utils/request';
  * @throws {Error} Si ocurre un error en la solicitud fetch o al procesar la respuesta.
  */
 
-type Result = Response<OrderInfo>;
-async function generateOrder(products: ProductCart[]): Promise<Result> {
+type Result = Response<Order>;
+async function generateOrder(products: cartProduct[]): Promise<Result> {
   const url = `${ENDPOINTS.ORDERS}`;
 
   const method = METHODS.POST;
