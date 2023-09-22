@@ -1,10 +1,10 @@
-export interface cartProduct {
+export interface CartProduct {
   id: string;
   quantity: number;
 }
 
 export interface Cart {
-  products: cartProduct[];
+  products: CartProduct[];
 }
 
 export interface Detail {

@@ -1,4 +1,4 @@
-import { Cart, Order, cartProduct } from './types';
+import { Cart, Order, CartProduct } from './types';
 
 import ENDPOINTS from '@/utils/endpoints';
 import { METHODS, Response } from '@/utils/request';
@@ -16,7 +16,7 @@ import { METHODS, Response } from '@/utils/request';
  */
 
 type Result = Response<Order>;
-async function generateOrder(products: cartProduct[]): Promise<Result> {
+async function generateOrder(products: CartProduct[]): Promise<Result> {
   const url = `${ENDPOINTS.ORDERS}`;
 
   const method = METHODS.POST;
