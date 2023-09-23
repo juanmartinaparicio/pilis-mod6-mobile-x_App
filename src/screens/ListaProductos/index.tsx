@@ -25,30 +25,30 @@ export default function ListaProductos() {
     fetchProducts();
   }, []);
 
-const [filters, setFilters] = useState ({
-  category:'all'
-});
+  const [filters, setFilters] = useState({
+    category: 'all'
+  });
 
-const filterProducts= (products: Product)=>{
-   return products.filter(product  => {
-    return(
-      product.category=== 'all'||
-      product.category=== filters.category
-    )
-   })
+  const filterProducts = (products: Product[]) => {
+    return products.filter(product => {
+      return (
+        product.category === 'all' ||
+        product.category === filters.category
+      )
+    })
 
-}
+  }
 
-const filteredProducts = filterProducts(products)
+  const filteredProducts = filterProducts(products)
 
 
   return (
     <SafeAreaView style={{ backgroundColor: '#fff' }}>
       <ScrollView contentContainerStyle={styles.container}>
-        <Categories />
-        
+        <Categories changeFilters={setFilters} />
+
         {products?.map((product: Product) => (
-          <CardProduct key={product.id} product={filteredProducts} />
+          <CardProduct key={product.id} product={product} />
         ))}
       </ScrollView>
     </SafeAreaView>
