@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -25,12 +25,30 @@ export default function ListaProductos() {
     fetchProducts();
   }, []);
 
+const [filters, setFilters] = useState ({
+  category:'all'
+});
+
+const filterProducts= (products: Product)=>{
+   return products.filter(product  => {
+    return(
+      product.category=== 'all'||
+      product.category=== filters.category
+    )
+   })
+
+}
+
+const filteredProducts = filterProducts(products)
+
+
   return (
     <SafeAreaView style={{ backgroundColor: '#fff' }}>
       <ScrollView contentContainerStyle={styles.container}>
         <Categories />
+        
         {products?.map((product: Product) => (
-          <CardProduct key={product.id} product={product} />
+          <CardProduct key={product.id} product={filteredProducts} />
         ))}
       </ScrollView>
     </SafeAreaView>
