@@ -1,6 +1,5 @@
 import React from 'react';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useDispatch } from 'react-redux';
 
 import { useAppDispatch } from '@/context/redux/hooks';
 import {
