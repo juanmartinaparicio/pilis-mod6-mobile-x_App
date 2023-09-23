@@ -1,5 +1,9 @@
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
+
+import useOrder from '../context/hook';
 
 export default function Orders() {
-  return <Text>Orders</Text>;
+  const { orders, isLoading, refreshOrder, refreshOrders } = useOrder();
+
+  return <View>{isLoading && <Text>cargando...</Text>}</View>;
 }
