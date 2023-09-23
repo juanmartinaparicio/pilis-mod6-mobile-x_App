@@ -41,9 +41,9 @@ export default function ListaProductos() {
   return (
     <SafeAreaView style={{ backgroundColor: '#fff' }}>
       <ScrollView contentContainerStyle={styles.container}>
-        <Categories changeFilters={setFilters} />
+        <Categories changeFilters={setFilters} category={filters.category} />
 
-        {products?.map((product: Product) => (
+        {filteredProducts.map((product: Product) => (
           <CardProduct key={product.id} product={product} />
         ))}
       </ScrollView>

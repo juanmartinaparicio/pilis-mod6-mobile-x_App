@@ -5,6 +5,7 @@ import reducer from './reducer';
 import { initialState } from './state';
 
 import getOrder from '@/services/orders/getOrder';
+import refreshToken from '@/services/orders/refreshToken';
 import { Order } from '@/services/orders/types';
 import Storage from '@/utils/storage';
 
@@ -39,7 +40,12 @@ function useOrder() {
     loadOrderAction(orders);
   };
 
-  const refreshToken = async (orderId: string) => {};
+  const refreshCode = async (orderId: string) => {
+    const { isError, result: order } = await refreshToken(orderId);
+
+    if (isError || !order || order.isDelivered || order.isExpired)
+      refreshOrder(orderId);
+  };
 
   const refreshOrder = async (orderId: string) => {
     loadingAction();
@@ -56,11 +62,19 @@ function useOrder() {
     updateOrderAction(order);
   };
 
+  const addOrder = async (order: Order) => {
+    loadingAction();
+    const storage = new Storage(ORDERS_STORAGE);
+    const orders = [...state.orders, order];
+    await storage.setValue(orders.map(o => o.id));
+    loadOrderAction(orders);
+  };
+
   useEffect(() => {
     refreshOrders();
   }, []);
 
-  return { ...state, refreshOrders, refreshOrder, refreshToken };
+  return { ...state, refreshOrders, refreshOrder, refreshToken, addOrder };
 }
 
 export default useOrder;

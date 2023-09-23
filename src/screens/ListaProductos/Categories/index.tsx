@@ -10,13 +10,17 @@ import {
 
 import CATEGORIES, { CategoryFilter } from './categories';
 
+const DEFAULT_CATEGORY = { category: 'all' };
 interface Props {
   changeFilters: (category: CategoryFilter) => void;
+  category: string;
 }
-export default function Categories({ changeFilters }: Props) {
+export default function Categories({ changeFilters, category }: Props) {
   const handleCategory = (category: string) => {
     return () => {
-      changeFilters({ category });
+      if (category === DEFAULT_CATEGORY.category)
+        return changeFilters({ category });
+      changeFilters(DEFAULT_CATEGORY);
     };
   };
 
