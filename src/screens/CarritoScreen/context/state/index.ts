@@ -44,7 +44,8 @@ function useOrder() {
     const { isError, result: order } = await refreshToken(orderId);
 
     if (isError || !order || order.isDelivered || order.isExpired)
-      refreshOrder(orderId);
+      return refreshOrder(orderId);
+    updateOrderAction(order);
   };
 
   const refreshOrder = async (orderId: string) => {
@@ -74,7 +75,13 @@ function useOrder() {
     refreshOrders();
   }, []);
 
-  return { ...state, refreshOrders, refreshOrder, refreshToken, addOrder };
+  return {
+    ...state,
+    refreshOrders,
+    refreshOrder,
+    refreshToken,
+    addOrder,
+    refreshCode,
+  };
 }
-
 export default useOrder;
