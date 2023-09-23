@@ -8,7 +8,16 @@ import {
     View,
 } from 'react-native';
 
-export default function Categories() {
+export default function Categories({ changeFilters: }) {
+
+    const handleCategory = (event) => {
+        onPress(prevState => ({
+            ...prevState,
+            minPrice: event.target.value
+        }))
+    }
+
+
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
             <View style={styles.container}>
@@ -48,7 +57,7 @@ export default function Categories() {
                             <TouchableOpacity
                                 key={index}
                                 onPress={() => {
-                                    // handle onPress
+                                    handleCategory(event)
                                 }}
                             >
                                 <View style={[styles.card, { backgroundColor: color }]}>
