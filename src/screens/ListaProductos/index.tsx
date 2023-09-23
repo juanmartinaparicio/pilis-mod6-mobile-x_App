@@ -9,7 +9,10 @@ import { getProducts } from '../../context/redux/reducers/ProductReducer';
 import getAllProducts from '@/services/products/getAllProducts';
 import { Product } from '@/services/products/types';
 
+const DEFAULT_CATEGORY = { category: 'all' };
+
 export default function ListaProductos() {
+  const [filters, setFilters] = useState(DEFAULT_CATEGORY);
   const products = useSelector((state: any) => state.product.product);
   const dispatch = useDispatch();
 
@@ -25,22 +28,15 @@ export default function ListaProductos() {
     fetchProducts();
   }, []);
 
-  const [filters, setFilters] = useState({
-    category: 'all'
-  });
-
   const filterProducts = (products: Product[]) => {
     return products.filter(product => {
       return (
-        product.category === 'all' ||
-        product.category === filters.category
-      )
-    })
+        product.category === 'all' || product.category === filters.category
+      );
+    });
+  };
 
-  }
-
-  const filteredProducts = filterProducts(products)
-
+  const filteredProducts = filterProducts(products);
 
   return (
     <SafeAreaView style={{ backgroundColor: '#fff' }}>
