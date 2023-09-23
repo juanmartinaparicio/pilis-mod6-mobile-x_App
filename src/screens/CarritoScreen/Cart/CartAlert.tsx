@@ -20,7 +20,7 @@ export const CartAlert = () => {
 
   return (
     <View>
-      <Button title='Mostrar Alerte' onPress={showAlert} />
+      <Button title='Mostrar Alerta' onPress={showAlert} />
     </View>
   );
 };
