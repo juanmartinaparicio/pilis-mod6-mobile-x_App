@@ -43,7 +43,7 @@ export default function ListaProductos() {
       <ScrollView contentContainerStyle={styles.container}>
         <Categories changeFilters={setFilters} category={filters.category} />
 
-        {filteredProducts.map((product: Product) => (
+        {products.map((product: Product) => (
           <CardProduct key={product.id} product={product} />
         ))}
       </ScrollView>

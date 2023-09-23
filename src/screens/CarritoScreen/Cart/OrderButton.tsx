@@ -1,18 +1,19 @@
 import React from 'react';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
+import useOrderContext from '../context/useOrderContext';
+
 import { useAppDispatch } from '@/context/redux/hooks';
 import {
   ProductCart,
   cleanCart,
 } from '@/context/redux/reducers/CarritoReducer';
-import generateOrder from '@/services/orders/generateOrder';
 
 type VoidFunction = () => void | Promise<void>;
 function showAlert(
   message: string,
-  onContinue: VoidFunction = () => {},
   onBack: VoidFunction = () => {},
+  onContinue: VoidFunction = () => {},
 ) {
   Alert.alert(
     'Alerta',
@@ -39,6 +40,7 @@ interface Props {
 }
 
 export default function OrderButton({ cart }: Props) {
+  const { addOrder } = useOrderContext();
   const dispatch = useAppDispatch();
 
   const total = cart.reduce(
@@ -48,7 +50,7 @@ export default function OrderButton({ cart }: Props) {
 
   const onPress = () => {
     const onContinue = () => {
-      generateOrder(cart).then(() => {
+      addOrder(cart).finally(() => {
         dispatch(cleanCart());
       });
     };

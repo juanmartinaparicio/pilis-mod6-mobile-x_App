@@ -4,13 +4,15 @@ import { ACTIONS } from './actions';
 import reducer from './reducer';
 import { initialState } from './state';
 
+import { ProductCart } from '@/context/redux/reducers/CarritoReducer';
+import generateOrder from '@/services/orders/generateOrder';
 import getOrder from '@/services/orders/getOrder';
 import refreshToken from '@/services/orders/refreshToken';
 import { Order } from '@/services/orders/types';
 import Storage from '@/utils/storage';
 
 const ORDERS_STORAGE = 'orders';
-function useOrder() {
+function useOrderHook() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const loadingAction = () => dispatch({ type: ACTIONS.LOADING });
@@ -39,32 +41,38 @@ function useOrder() {
     storage.setValue(ordersId);
     loadOrderAction(orders);
   };
-
-  const refreshCode = async (orderId: string) => {
-    const { isError, result: order } = await refreshToken(orderId);
-
-    if (isError || !order || order.isDelivered || order.isExpired)
-      return refreshOrder(orderId);
-    updateOrderAction(order);
-  };
-
   const refreshOrder = async (orderId: string) => {
     loadingAction();
     const response = await getOrder(orderId);
     const storage = new Storage<string[]>(ORDERS_STORAGE);
 
-    if (response.isError) return;
+    if (response.isError) {
+      return;
+    }
     const order = response.result!;
 
     if (!order.isDelivered && !order.isExpired) return updateOrderAction(order);
     const orders = state.orders.filter(o => o.id !== order.id);
 
     storage.setValue(orders.map(o => o.id));
+    loadOrderAction(orders);
+  };
+  const refreshCode = async (orderId: string) => {
+    loadingAction();
+    const { isError, result: order, status } = await refreshToken(orderId);
+    if (isError) console.error(status);
+
+    if (isError || !order || order.isDelivered || order.isExpired)
+      return refreshOrder(orderId);
     updateOrderAction(order);
   };
-
-  const addOrder = async (order: Order) => {
+  const addOrder = async (cart: ProductCart[]) => {
     loadingAction();
+    const { isError, result: order } = await generateOrder(cart);
+
+    if (isError || !order || order.isDelivered || order.isExpired)
+      return refreshOrders();
+
     const storage = new Storage(ORDERS_STORAGE);
     const orders = [...state.orders, order];
     await storage.setValue(orders.map(o => o.id));
@@ -79,9 +87,8 @@ function useOrder() {
     ...state,
     refreshOrders,
     refreshOrder,
-    refreshToken,
     addOrder,
     refreshCode,
   };
 }
-export default useOrder;
+export default useOrderHook;

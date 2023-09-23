@@ -3,12 +3,15 @@ import { View } from 'react-native';
 
 import Cart from './Cart';
 import Orders from './Orders';
+import OrderProvider from './context/OrderProvider';
 
 export default function CarritoScreen() {
   return (
     <View>
-      <Cart />
-      <Orders />
+      <OrderProvider>
+        <Cart />
+        <Orders />
+      </OrderProvider>
     </View>
   );
 }

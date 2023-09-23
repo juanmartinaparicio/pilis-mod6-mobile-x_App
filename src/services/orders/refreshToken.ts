@@ -1,12 +1,13 @@
 import { Order } from './types';
 
 import ENDPOINTS from '@/utils/endpoints';
-import { Response } from '@/utils/request';
+import { METHODS, Response } from '@/utils/request';
 
 type Result = Response<Order>;
 async function refreshToken(orderId: string): Promise<Result> {
   const url = `${ENDPOINTS.REFRESH_ORDER}/${orderId}`;
-  const response = await fetch(url);
+  const method = METHODS.PUT;
+  const response = await fetch(url, { method });
 
   const status = response.status;
   const isError = !response.ok;

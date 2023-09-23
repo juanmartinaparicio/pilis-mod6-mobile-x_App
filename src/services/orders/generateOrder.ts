@@ -17,6 +17,7 @@ import { METHODS, Response } from '@/utils/request';
 
 type Result = Response<Order>;
 async function generateOrder(products: CartProduct[]): Promise<Result> {
+  if (products.length === 0) return { isError: true, status: 400 };
   const url = `${ENDPOINTS.ORDERS}`;
 
   const method = METHODS.POST;
