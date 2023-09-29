@@ -18,7 +18,7 @@ export default function Orders() {
           <OrderCard key={order.id} order={order} selectDetail={setDetail} />
         ))}
       </View>
-      {detail && <OrderDetail detail={detail} selectDetail={setDetail} />}
+      <OrderDetail detail={detail} selectDetail={setDetail} />
     </View>
   );
 }
