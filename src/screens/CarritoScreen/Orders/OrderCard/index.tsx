@@ -2,7 +2,7 @@ import { Foundation } from '@expo/vector-icons';
 import React from 'react';
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 
-import useOrderContext from '../context/useOrderContext';
+import useOrderContext from '../../context/useOrderContext';
 
 import { Detail, Order } from '@/services/orders/types';
 
