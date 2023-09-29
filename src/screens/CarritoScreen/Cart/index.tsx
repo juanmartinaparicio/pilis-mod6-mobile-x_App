@@ -9,7 +9,7 @@ export default function Cart() {
   const cart = useSelector((state: any) => state.cart.cart);
 
   return (
-    <SafeAreaView style={{ backgroundColor: '#fff' }}>
+    <SafeAreaView>
       <ScrollView contentContainerStyle={styles.container}>
         {cart.map((item: any) => {
           return <CardProduct key={item.id} product={item} />;

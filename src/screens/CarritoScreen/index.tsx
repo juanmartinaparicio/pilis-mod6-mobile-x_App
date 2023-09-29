@@ -7,7 +7,7 @@ import OrderProvider from './context/OrderProvider';
 
 export default function CarritoScreen() {
   return (
-    <View>
+    <View style={{ backgroundColor: '#fff', flex: 1 }}>
       <OrderProvider>
         <Cart />
         <Orders />
