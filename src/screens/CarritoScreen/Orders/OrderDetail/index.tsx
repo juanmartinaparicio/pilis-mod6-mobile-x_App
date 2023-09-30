@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import TableDetail from './TableDetail';
 
@@ -14,13 +14,18 @@ export default function OrderDetail({ detail, selectDetail }: Props) {
   const resetView = () => selectDetail(null);
 
   return (
-    <Modal transparent visible={detail !== null} onRequestClose={resetView}>
+    <Modal
+      animationType='fade'
+      transparent
+      visible={detail !== null}
+      onRequestClose={resetView}
+    >
       <View style={styles.container}>
         <View style={styles.card}>
           <TableDetail detail={detail!} />
-          <Pressable style={styles.cardButton} onPress={resetView}>
+          <TouchableOpacity style={styles.cardButton} onPress={resetView}>
             <Text style={styles.cardButtonText}>cerrar</Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </View>
     </Modal>

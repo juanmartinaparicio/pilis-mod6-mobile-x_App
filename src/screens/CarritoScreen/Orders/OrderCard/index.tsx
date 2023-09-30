@@ -1,6 +1,6 @@
 import { Foundation } from '@expo/vector-icons';
 import React from 'react';
-import { StyleSheet, Text, View, Pressable } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import useOrderContext from '../../context/useOrderContext';
 
@@ -18,16 +18,16 @@ export default function OrderCard({ order, selectDetail }: Props) {
 
   return (
     <View style={styles.card}>
-      <Pressable onPress={refresh}>
+      <TouchableOpacity onPress={refresh}>
         <Foundation name='refresh' color='#ff9801' size={30} />
-      </Pressable>
+      </TouchableOpacity>
       <View>
         <Text style={styles.cardCode}>{order.code}</Text>
         <Text style={styles.cardStatus}>{order.status}</Text>
       </View>
-      <Pressable onPress={viewDetail}>
+      <TouchableOpacity onPress={viewDetail}>
         <Foundation name='list' color='#ff9801' size={30} />
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 }
