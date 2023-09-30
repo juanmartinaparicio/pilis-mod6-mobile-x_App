@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
-import { Row, Rows, Table } from 'react-native-table-component';
+
+import TableDetail from './TableDetail';
 
 import { Detail } from '@/services/orders/types';
 import COLORS from '@/utils/colors';
@@ -12,25 +13,12 @@ interface Props {
 export default function OrderDetail({ detail, selectDetail }: Props) {
   const resetView = () => selectDetail(null);
   const total = detail?.reduce((t, p) => t + Number(p.subTotal), 0);
-  const tableData = detail?.map(item => [
-    item.description,
-    item.quantity,
-    item.subTotal,
-  ]);
+
   return (
-    <Modal
-      animationType='slide'
-      transparent
-      visible={detail !== null}
-      onRequestClose={resetView}
-    >
+    <Modal transparent visible={detail !== null} onRequestClose={resetView}>
       <Pressable style={styles.container} onPress={resetView}>
         <View style={styles.card}>
-          <Table>
-            <Row data={['Producto', 'Cantidad', 'Subtotal']} />
-            <Rows data={tableData} />
-          </Table>
-
+          <TableDetail detail={detail!} />
           <Text style={styles.cardTotal}>Total: ${total}</Text>
           <Pressable style={styles.cardButton} onPress={resetView}>
             <Text style={styles.cardButtonText}>cerrar</Text>
