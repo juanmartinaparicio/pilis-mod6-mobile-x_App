@@ -12,19 +12,17 @@ interface Props {
 }
 export default function OrderDetail({ detail, selectDetail }: Props) {
   const resetView = () => selectDetail(null);
-  const total = detail?.reduce((t, p) => t + Number(p.subTotal), 0);
 
   return (
     <Modal transparent visible={detail !== null} onRequestClose={resetView}>
-      <Pressable style={styles.container} onPress={resetView}>
+      <View style={styles.container}>
         <View style={styles.card}>
           <TableDetail detail={detail!} />
-          <Text style={styles.cardTotal}>Total: ${total}</Text>
           <Pressable style={styles.cardButton} onPress={resetView}>
             <Text style={styles.cardButtonText}>cerrar</Text>
           </Pressable>
         </View>
-      </Pressable>
+      </View>
     </Modal>
   );
 }
